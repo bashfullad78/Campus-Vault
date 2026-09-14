@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens — College Uploader.
+ * Coin-gold on slate, dark-first. Keep every color decision here so a light
+ * theme can be added later without rework (frontend.txt §1).
+ */
+@theme {
+  --color-surface: oklch(0.208 0.042 265.75); /* slate-900 */
+  --color-surface-raised: oklch(0.279 0.041 260.03); /* slate-800 */
+  --color-page: oklch(0.129 0.042 264.7); /* slate-950 */
+  --color-line: oklch(0.279 0.041 260.03); /* slate-800 */
+  --color-coin: oklch(0.828 0.189 84.43); /* amber-400 */
+  --color-coin-dim: oklch(0.666 0.179 58.32); /* amber-600 */
+  --color-credit: oklch(0.718 0.202 149.58); /* green-400 */
+  --color-debit: oklch(0.637 0.237 25.33); /* red-400 */
+  --font-sans:
+    "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-page text-slate-100 antialiased;
+  font-family: var(--font-sans);
+}
+
+/* Every coin amount on the platform is easier to read aligned. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Coin chip pop animation (frontend.txt §7): scale up briefly on balance gain. */
+@keyframes coin-pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.18);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.coin-pop {
+  animation: coin-pop 0.45s ease-out;
+}
+
+/* Floating "+10 coins" burst shown after a rewarded upload. */
+@keyframes coin-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-28px);
+  }
+}
+.coin-rise {
+  animation: coin-rise 1.4s ease-out forwards;
+}
+
+/* Soft page entrance for route content. */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-up {
+  animation: fade-up 0.18s ease-out both;
+}

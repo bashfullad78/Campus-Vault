@@ -1,0 +1,13 @@
+Generic single-database configuration for College Uploader migrations.
+
+Commands (run from the project root with the venv active):
+
+    alembic upgrade head          # apply all pending migrations
+    alembic downgrade -1          # revert the latest migration
+    alembic revision -m "msg"     # create an empty migration
+    alembic revision --autogenerate -m "msg"   # diff models -> migration
+    alembic current               # show current revision
+    alembic history               # list revisions
+
+The database URL is taken from backend/config.py (environment / .env),
+never from alembic.ini.
